@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ENGINES, EXAMPLES } from "./constants";
 import Tooltip from "./components/Tooltip";
 import CodePanel from "./components/CodePanel";
@@ -24,7 +24,7 @@ export default function App() {
   const [stylePreset, setStylePreset] = useState<MermaidPreset>("slate");
   const [direction, setDirection] = useState<Direction>("TD");
   const [code, setCode] = useState("");
-  const [markdown, setMarkdown] = useState("");
+  const [, setMarkdown] = useState("");
   const [graphJson, setGraphJson] = useState<any>(null);
   const [svg, setSvg] = useState("");
   const [loading, setLoading] = useState(false);
