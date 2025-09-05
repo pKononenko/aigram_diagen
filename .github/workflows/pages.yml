@@ -1,4 +1,4 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy UI to GitHub Pages
 
 on:
   push:
@@ -10,36 +10,41 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend
+        working-directory: diagram-ui
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Inject env (public)
-        run: |
-          echo "VITE_API_BASE=${{ vars.VITE_API_BASE }}" > .env.production
+          cache: npm
+          cache-dependency-path: diagram-ui/package-lock.json
 
       - run: npm ci
+
+      - run: |
+          echo "VITE_API_BASE=${{ vars.VITE_API_BASE }}" >> .env
+
       - run: npm run build
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/dist
-
+          path: diagram-ui/dist
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
