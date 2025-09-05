@@ -18,3 +18,4 @@ TODOS:
 - Fix/Update `.gitignore`
 - Add proper docstring
 - Add refactoring
+- Groq instead of requests
