@@ -1,4 +1,4 @@
-from . .models import Graph
+from app.models import Graph
 
 def to_dot(g: Graph, kind: str = "flow", direction: str = "TD") -> str:
     rank = {"TD": "TB", "BT": "BT", "LR": "LR", "RL": "RL"}.get(direction, "TB")

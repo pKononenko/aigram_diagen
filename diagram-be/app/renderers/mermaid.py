@@ -1,4 +1,4 @@
-from . .models import Graph
+from app.models import Graph
 
 def to_mermaid(g: Graph, kind: str = "flow", direction: str = "TD") -> str:
     if kind == "flow":

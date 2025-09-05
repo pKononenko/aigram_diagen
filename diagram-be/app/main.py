@@ -1,10 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from starlette.middleware.cors import CORSMiddleware
-from models import GenerateRequest, GenerateResponse, Graph
-from settings import CORS_ORIGINS
-from dsl import parse_mini_dsl
-from llm import call_groq_for_graph
-from renderers import to_mermaid, to_dot
+from app.models import GenerateRequest, GenerateResponse, Graph
+from app.settings import CORS_ORIGINS
+from app.dsl import parse_mini_dsl
+from app.llm import call_groq_for_graph
+from app.renderers import to_mermaid, to_dot
 
 app = FastAPI(openapi_url="/api/openapi.json", title="Text → Diagram")
 

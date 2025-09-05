@@ -1,6 +1,6 @@
 import re
 from typing import List
-from .models import Graph, Node, Edge
+from app.models import Graph, Node, Edge
 
 def parse_mini_dsl(prompt: str) -> Graph:
     nodes: List[Node] = []

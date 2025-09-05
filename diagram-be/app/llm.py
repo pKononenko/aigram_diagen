@@ -1,7 +1,7 @@
 import json
 from groq import Groq
-from .settings import GROQ_API_KEY, GROQ_MODEL, GROQ_URL
-from .models import Graph
+from app.settings import GROQ_API_KEY, GROQ_MODEL, GROQ_URL
+from app.models import Graph
 
 SYSTEM_PROMPT = (
     'You convert short natural-language descriptions into a compact JSON graph.'
@@ -14,7 +14,7 @@ SYSTEM_PROMPT = (
     '\n- Do not invent entities beyond the description.'
 )
 
-_client: Groq | None = None
+_client: Groq = None
 
 def _client_lazy() -> Groq:
     global _client
