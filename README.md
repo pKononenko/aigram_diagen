@@ -18,3 +18,4 @@ TODOS:
 - Fix/Update `.gitignore`
 - Add proper docstring
 - Add refactoring
+- Deploy BE and FE on Github Pages + Vercel Serverless
