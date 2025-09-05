@@ -23,8 +23,8 @@ def _client_lazy() -> Groq:
             raise RuntimeError("GROQ_API_KEY is not set")
         kwargs = {"api_key": GROQ_API_KEY}
         # Groq SDK follows OpenAI-style; base_url is optional (defaults to Groq)
-        if GROQ_URL:
-            kwargs["base_url"] = GROQ_URL
+        #if GROQ_URL:
+        #    kwargs["base_url"] = GROQ_URL
         _client = Groq(**kwargs)
     return _client
 
@@ -43,7 +43,7 @@ def call_groq_for_graph(user_prompt: str) -> Graph:
     client = _client_lazy()
     resp = client.chat.completions.create(
         model=GROQ_MODEL,
-        temperature=0.2,
+        temperature=0.5,
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
