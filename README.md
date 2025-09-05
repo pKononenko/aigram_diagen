@@ -16,3 +16,5 @@ TODOS:
 - Refine Structure
 - Add proper setup instruction
 - Fix/Update `.gitignore`
+- Add proper docstring
+- Add refactoring
