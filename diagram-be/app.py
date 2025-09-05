@@ -17,7 +17,15 @@ GROQ_URL = os.getenv("GROQ_URL", "https://api.groq.com/openai/v1/chat/completion
 app = FastAPI(openapi_url="/api/openapi.json", title="Text → Diagram")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or restrict to your Pages domain
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:8000",
+        "null",
+        "*",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
