@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -20,6 +20,12 @@ jobs:
     defaults:
       run:
         working-directory: diagram-ui
+    # If you stored VITE_API_BASE on the "github-pages" Environment, add this:
+    # environment: github-pages
+    env:
+      # Prefer repo variable; fall back to secret if you used secrets instead
+      VITE_API_BASE: ${{ vars.VITE_API_BASE || secrets.VITE_API_BASE }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -31,14 +37,18 @@ jobs:
 
       - run: npm ci
 
-      - run: |
-          echo "VITE_API_BASE=${{ vars.VITE_API_BASE }}" >> .env
+      # Create .env that Vite will read
+      - name: Create .env for Vite
+        run: |
+          printf "VITE_API_BASE=%s\n" "$VITE_API_BASE" > .env
+          echo "Created .env with VITE_API_BASE=$(grep VITE_API_BASE .env)"
 
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: diagram-ui/dist
+
   deploy:
     needs: build
     environment:
