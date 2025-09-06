@@ -2,7 +2,7 @@ import json
 from groq import Groq
 from app.settings import GROQ_API_KEY, GROQ_MODEL, GROQ_URL
 from app.models import Graph
-from prompts.chart_md_gen_prompt import chart_prompt
+from app.prompts.chart_md_gen_prompt import chart_prompt
 
 _client: Groq = None
 
