@@ -20,3 +20,7 @@ TODOS:
 - Add refactoring
 - Update UI to make it more resposible for smartphones
 - Update UI style/design (**IN PROGRESS**)
+- Choose best model for chart generation (evaluate it)
+- Add creativity as a metric (temperature change)
+- Add validation to ensure that it will work with high probability if creativity level is high
+- Add code formater, linters, precommit etc.

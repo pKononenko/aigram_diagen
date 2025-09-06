@@ -2,17 +2,7 @@ import json
 from groq import Groq
 from app.settings import GROQ_API_KEY, GROQ_MODEL, GROQ_URL
 from app.models import Graph
-
-SYSTEM_PROMPT = (
-    'You convert short natural-language descriptions into a compact JSON graph.'
-    '\n- Output ONLY JSON. No prose.'
-    '\n- Schema: {"nodes":[{"id":"API","label":"API Server","kind":null,"props":null},...],'
-    '"edges":[{"source":"User","target":"API","label":"logs in","kind":null},...]}'
-    '\n- "id" short (1-12), unique, alphanumeric/underscore.'
-    '\n- Use labels as readable names.'
-    '\n- Add edges whenever relationships are mentioned.'
-    '\n- Do not invent entities beyond the description.'
-)
+from prompts.chart_md_gen_prompt import chart_prompt
 
 _client: Groq = None
 
@@ -46,7 +36,7 @@ def call_groq_for_graph(user_prompt: str) -> Graph:
         temperature=0.5,
         response_format={"type": "json_object"},
         messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": chart_prompt},
             {"role": "user", "content": user_prompt},
         ],
     )
