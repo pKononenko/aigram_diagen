@@ -7,8 +7,6 @@ TODOS:
 - Add styling to Dot diagrams
 - Update styles for blocks and nodes
 - Add error handling for everything (**IN PROGRESS**)
-- Update prompts to more robust and universal ones (**IN PROGRESS**)
-- Properly store prompts (**IN PROGRESS**)
 - Add testing framework
 - Add proper/correct setup for libraries with UV or/with Docker (Describe a regular setup in readme, Docker and UV)
 - Update with proper README (**IN PROGRESS**)
